@@ -21,7 +21,7 @@ jobs:
 
       - name: Build the Docker image
         working-directory: src/FlightServices
-        run: docker build . -t jokerva1010123/flight-service:
+        run: docker build . -t jokerva1010123/flight-service:latest
       
       - name: Build the Docker image
         working-directory: src/BonusServices
