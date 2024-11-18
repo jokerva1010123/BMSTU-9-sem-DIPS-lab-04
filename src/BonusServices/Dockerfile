@@ -16,8 +16,8 @@ COPY ["BonusServices.csproj", "src/BonusServices/"]
 
 RUN dotnet restore "./src/BonusServices/BonusServices.csproj"
 COPY . .
-WORKDIR "/src/src/BonusServices"
-RUN dotnet build "./BonusServices.csproj" -c $BUILD_CONFIGURATION -o /app/build
+# WORKDIR "/src/src/BonusServices"
+# RUN dotnet build "./BonusServices.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
