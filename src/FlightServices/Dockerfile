@@ -16,7 +16,7 @@ COPY ["FlightServices.csproj", "src/FlightServices/"]
 RUN dotnet restore "./src/FlightServices/FlightServices.csproj"
 COPY . .
 # WORKDIR "/src/src/FlightServices/"
-# RUN dotnet build "./FlightServices.csproj" -c $BUILD_CONFIGURATION 
+# RUN dotnet build "./FlightServices.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish

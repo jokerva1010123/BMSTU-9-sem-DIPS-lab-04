@@ -21,7 +21,19 @@ jobs:
 
       - name: Build the Docker image
         working-directory: src/FlightServices
-        run: docker build . -t jokerva1010123/flight-service:latest
+        run: docker build . -t jokerva1010123/flight-service:
+      
+      - name: Build the Docker image
+        working-directory: src/BonusServices
+        run: docker build . -t jokerva1010123/bonus-service:latest
+      
+      - name: Build the Docker image
+        working-directory: src/TicketServices
+        run: docker build . -t jokerva1010123/ticket-service:latest
+      
+      - name: Build the Docker image
+        working-directory: src/Gateway
+        run: docker build . -t jokerva1010123/gateway:latest
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -30,4 +42,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push the images to Docker Hub
-        run: docker push jokerva1010123/flight-service:latest
+        run: 
+          docker push jokerva1010123/flight-service:latest
+          docker push jokerva1010123/bonus-service:latest
+          docker push jokerva1010123/ticket-service:latest
+          docker push jokerva1010123/gateway:latest
