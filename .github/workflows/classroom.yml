@@ -1,7 +1,7 @@
 name: GitHub Classroom Workflow
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, main ]
 
 env:
   KUBE_HOST: ${{ secrets.KUBE_HOST }}
