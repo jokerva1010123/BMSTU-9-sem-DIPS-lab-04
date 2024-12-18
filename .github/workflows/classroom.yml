@@ -73,10 +73,10 @@ jobs:
       - name: Get all resources from namespace jokerva1010123 in Cluster
         run: |
           kubectl get all -n jokerva1010123
-      # - name: Setup Ingress
-      #   run: |
-      #     cd k8s/networking
-      #     minikube service gateway:las -n jokerva1010123 --url
-      #     kubectl apply -f ingress.yaml
-      #     kubectl get ingress
-      #     sudo echo "$(minikube ip) myapp.local" | sudo tee -a /etc/hosts
+      - name: Setup Ingress
+        run: |
+          cd k8s/networking
+          minikube service gateway:las -n jokerva1010123 --url
+          kubectl apply -f ingress.yaml
+          kubectl get ingress
+          sudo echo "$(minikube ip) myapp.local" | sudo tee -a /etc/hosts
