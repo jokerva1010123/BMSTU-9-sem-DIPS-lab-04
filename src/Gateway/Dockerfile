@@ -11,7 +11,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Gateway/Gateway.csproj", "src/Gateway/"]
+COPY ["Gateway.csproj", "src/Gateway/"]
 RUN dotnet restore "./src/Gateway/Gateway.csproj"
 COPY . .
 # WORKDIR "/src/src/Gateway"

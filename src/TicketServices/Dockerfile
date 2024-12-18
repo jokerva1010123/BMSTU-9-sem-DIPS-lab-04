@@ -12,7 +12,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/TicketServices/TicketServices.csproj", "src/TicketServices/"]
+COPY ["TicketServices.csproj", "src/TicketServices/"]
 RUN dotnet restore "./src/TicketServices/TicketServices.csproj"
 COPY . .
 # WORKDIR "/src/src/TicketServices"

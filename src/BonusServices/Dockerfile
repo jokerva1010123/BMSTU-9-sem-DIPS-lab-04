@@ -12,7 +12,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/BonusServices/BonusServices.csproj", "src/BonusServices/"]
+COPY ["BonusServices.csproj", "src/BonusServices/"]
 
 RUN dotnet restore "./src/BonusServices/BonusServices.csproj"
 COPY . .
