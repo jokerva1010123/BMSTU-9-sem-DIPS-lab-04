@@ -53,30 +53,30 @@ jobs:
   
       - name: Create Namespace in Cluster
         run: |
-          kubectl create namespace arperinn
+          kubectl create namespace jokerva1010123
 
       - name: Deploy DB and services
         run: |
           kubectl get namespace
           cd k8s
           echo "------------------Deploy Postgres DB------------------"
-          helm delete postgres --namespace arperinn --ignore-not-found
-          helm install -n arperinn postgres ./postgres_db
+          helm delete postgres --namespace jokerva1010123 --ignore-not-found
+          helm install -n jokerva1010123 postgres ./postgres_db
           echo "------------------Deploy Services------------------"
-          helm delete reserv --namespace arperinn --ignore-not-found
-          helm install -n arperinn reserv ./services
+          helm delete reserv --namespace jokerva1010123 --ignore-not-found
+          helm install -n jokerva1010123 reserv ./services
 
       - name: Wait 30s
         uses: jakejarvis/wait-action@master
         with:
           time: '30s'
-      - name: Get all resources from namespace arperinn in Cluster
+      - name: Get all resources from namespace jokerva1010123 in Cluster
         run: |
-          kubectl get all -n arperinn
+          kubectl get all -n jokerva1010123
       # - name: Setup Ingress
       #   run: |
       #     cd k8s/networking
-      #     minikube service gateway:las -n arperinn --url
+      #     minikube service gateway:las -n jokerva1010123 --url
       #     kubectl apply -f ingress.yaml
       #     kubectl get ingress
       #     sudo echo "$(minikube ip) myapp.local" | sudo tee -a /etc/hosts
