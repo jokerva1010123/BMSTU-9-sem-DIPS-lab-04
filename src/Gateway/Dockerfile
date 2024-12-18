@@ -14,8 +14,8 @@ WORKDIR /src
 COPY ["src/Gateway/Gateway.csproj", "src/Gateway/"]
 RUN dotnet restore "./src/Gateway/Gateway.csproj"
 COPY . .
-WORKDIR "/src/src/Gateway"
-RUN dotnet build "./Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/build
+# WORKDIR "/src/src/Gateway"
+# RUN dotnet build "./Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
