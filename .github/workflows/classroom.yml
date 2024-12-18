@@ -39,4 +39,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push the images to Docker Hub
-        run: docker push jokerva1010123/flight-service:latest
+        run: 
+          docker push jokerva1010123/flight-service:latest &&
+          docker push jokerva1010123/bonus-service:latest &&
+          docker push jokerva1010123/ticket-service:latest &&
+          docker push jokerva1010123/gateway:latest 
