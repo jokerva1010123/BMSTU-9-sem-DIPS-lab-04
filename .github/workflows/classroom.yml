@@ -80,7 +80,10 @@ jobs:
           kubectl apply -f ingress.yaml
           kubectl get ingress
           sudo echo "$(minikube ip) myapp.local" | sudo tee -a /etc/hosts
-          echo .values[0].value
+          URL=$(minikube service your-service-name --url)
+          echo "SERVICE_URL=$URL" >> $GITHUB_ENV
+          echo "Service URL is: $URL"
+          echo "Using service at: ${{ env.SERVICE_URL }}"
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
       #   id: version
@@ -88,7 +91,7 @@ jobs:
       #     cmd: >-
             
       #       jq '.values[0].value = "http://${{ secrets.PROD_HOST }}:${{ secrets.PROD_PORT }}"'
-      #       < v1v1/postman/environment.json > out.tmp &&
+      #       < v1/postman/environment.json > out.tmp &&
       #       mv out.tmp v1/postman/environment.json
 
       # - uses: education/autograding@v1
