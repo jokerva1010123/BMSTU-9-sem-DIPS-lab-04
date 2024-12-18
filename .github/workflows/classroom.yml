@@ -43,4 +43,14 @@ jobs:
           docker push jokerva1010123/flight-service:latest &&
           docker push jokerva1010123/bonus-service:latest &&
           docker push jokerva1010123/ticket-service:latest &&
-          docker push jokerva1010123/gateway:latest 
+          docker push jokerva1010123/gateway:latest
+      - name: Setup Minikube
+        uses: medyagh/setup-minikube@master
+  
+      - name: Check Minikube Cluster
+        run: |
+          kubectl get pods -A
+  
+      - name: Create Namespace in Cluster
+        run: |
+          kubectl create namespace arperinn
