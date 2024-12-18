@@ -18,9 +18,20 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-      - name: Build the Docker image
+      - name: Build the Docker image Flight
         working-directory: src/FlightServices
         run: docker build . -t jokerva1010123/flight-service:latest
+      - name: Build the Docker image Bonus
+        working-directory: src/BonusServices
+        run: docker build . -t jokerva1010123/bonus-service:latest
+      
+      - name: Build the Docker image Ticket
+        working-directory: src/TicketServices
+        run: docker build . -t jokerva1010123/ticket-service:latest
+      
+      - name: Build the Docker image Gateway
+        working-directory: src/Gateway
+        run: docker build . -t jokerva1010123/gateway:latest
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
