@@ -1,4 +1,4 @@
-flight-service:
+flight:
   service:
     type: ClusterIP
     port: 8070
@@ -10,7 +10,7 @@ flight-service:
       DB_PASSWORD: postgres
       DB_HOST: postgres
 
-bonus-service:
+bonus:
   service:
     type: ClusterIP
     port: 8060
@@ -22,7 +22,7 @@ bonus-service:
       DB_PASSWORD: postgres
       DB_HOST: postgres
 
-ticket-service:
+ticket:
   service:
     type: ClusterIP
     port: 8050
@@ -42,9 +42,9 @@ gateway:
     image: jokerva1010123/gateway:latest
     isGateway: true
     env:
-      FLIGHT_SERVICE_HOST: flight-service.jokerva1010123.svc.cluster.local
+      FLIGHT_SERVICE_HOST: flight.jokerva1010123.svc.cluster.local
       FLIGHT_SERVICE_PORT: 8070
-      BONUS_SERVICE_HOST: bonus-service.jokerva1010123.svc.cluster.local
+      BONUS_SERVICE_HOST: bonus.jokerva1010123.svc.cluster.local
       BONUS_SERVICE_PORT: 8060
-      TICKET_SERVICE_HOST: ticket-service.jokerva1010123.svc.cluster.local
+      TICKET_SERVICE_HOST: ticket.jokerva1010123.svc.cluster.local
       TICKET_SERVICE_PORT: 8050

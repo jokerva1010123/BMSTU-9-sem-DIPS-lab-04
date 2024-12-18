@@ -6,13 +6,13 @@ version: 1.0.0
 dependencies:
   - name: service-chart
     version: 1.0.0
-    alias: flight-service
+    alias: flight
   - name: service-chart
     version: 1.0.0
-    alias: bonus-service
+    alias: bonus
   - name: service-chart
     version: 1.0.0
-    alias: ticket-service
+    alias: ticket
   - name: service-chart
     version: 1.0.0
     alias: gateway
