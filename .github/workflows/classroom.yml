@@ -65,6 +65,7 @@ jobs:
           echo "------------------Deploy Services------------------"
           helm delete reserv --namespace jokerva1010123 --ignore-not-found
           helm install -n jokerva1010123 reserv ./services
+          kubectl port-forward bonus 8060:8060
 
       - name: Wait 30s
         uses: jakejarvis/wait-action@master
