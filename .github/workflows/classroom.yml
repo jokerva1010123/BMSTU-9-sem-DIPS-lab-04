@@ -86,6 +86,10 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
+          sudo ufw enable
+          sudo ufw allow 30060/tcp
+          sudo ufw allow 30050/tcp
+          sudo ufw allow 30070/tcp
           sudo ufw status verbose
           curl http://192.168.49.2:30070/api/v1/airports
           
