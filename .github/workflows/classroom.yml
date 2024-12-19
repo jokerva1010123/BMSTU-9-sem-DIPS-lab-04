@@ -6,6 +6,10 @@ on:
   pull_request:
     branches:
       - main
+permissions:
+  checks: write
+  actions: read
+  contents: read
 jobs:
   build:
     name:  Docker image to Docker Hub
