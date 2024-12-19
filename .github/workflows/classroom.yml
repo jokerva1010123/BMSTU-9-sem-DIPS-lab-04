@@ -66,10 +66,10 @@ jobs:
           helm delete reserv --namespace jokerva1010123 --ignore-not-found
           helm install -n jokerva1010123 reserv ./services
 
-      - name: Wait 15s
+      - name: Wait 30s
         uses: jakejarvis/wait-action@master
         with:
-          time: '15s'
+          time: '30s'
       - name: Get all resources from namespace jokerva1010123 in Cluster
         run: |
           kubectl get all -n jokerva1010123
