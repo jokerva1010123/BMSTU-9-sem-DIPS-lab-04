@@ -86,7 +86,7 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
-          minikube ip
+          curl http://http://192.168.49.2:30070/api/v1/airports
           
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
