@@ -86,7 +86,11 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
-          curl http://192.168.49.2:30000/api/v1/airports
+          sudo firewall-cmd  --permanent --add-port=30000/tcp
+          sudo firewall-cmd  --permanent --add-port=30070/tcp
+          sudo firewall-cmd  --permanent --add-port=30060/tcp
+          sudo firewall-cmd  --permanent --add-port=30050/tcp
+          curl http://192.168.49.2:30070/api/v1/airports
           
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
