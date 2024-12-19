@@ -9,7 +9,7 @@ namespace Gateway.Services
     {
         private readonly HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri("http://bonus:8060/")
+            BaseAddress = new Uri("http://192.168.49.2:30060/")
             // BaseAddress = new Uri("http://localhost:8060")
             // BaseAddress = new Uri("http://host.docker.internal:8060")
             //BaseAddress = new Uri("http://localhost:5006")
