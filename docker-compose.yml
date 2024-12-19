@@ -31,44 +31,44 @@ services:
       - pgadmin:/root/.pgadmin
 
   ticket-service:
-    container_name: "ticketservice"
-    image: jokerva1010123/ticket-service
-    depends_on:
-      - postgres
     build:
       dockerfile: ./src/TicketServices/Dockerfile
+    image: jokerva1010123/ticket-service
+    container_name: "ticketservice"
+    depends_on:
+      - postgres
     ports:
       - "8050:8080"
         
   privilege-service:
-    container_name: "privilegeservice"
-    image: jokerva1010123/bonus-service
-    depends_on:
-      - "postgres"
     build:
       context: .
       dockerfile: ./src/BonusServices/Dockerfile
+    image: jokerva1010123/bonus-service
+    container_name: "privilegeservice"
+    depends_on:
+      - "postgres"
     restart: always
     ports:
       - "8060:8080"
 
   flight-service:
-    container_name: "flightservice"
-    image: jokerva1010123/flight-service
-    depends_on:
-      - "postgres"
     build:
       context: .
       dockerfile: ./src/FlightServices/Dockerfile
+    image: jokerva1010123/flight-service
+    container_name: "flightservice"
+    depends_on:
+      - "postgres"
     restart: always
     ports:
       - "8070:8080"
 
   gateway:
-    image: jokerva1010123/gateway
     build:
       context: .
       dockerfile: ./src/Gateway/Dockerfile
+    image: jokerva1010123/gateway
     restart: always
     ports:
       - "8080:8080"
