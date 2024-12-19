@@ -84,7 +84,7 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
-          curl http://flight:8070/api/v1/airports
+          kubectl port-forward service/bonus 8060:8060
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
       #   id: version
