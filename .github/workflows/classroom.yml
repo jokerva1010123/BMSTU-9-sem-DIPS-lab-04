@@ -16,18 +16,18 @@ jobs:
       attestations: write
       id-token: write
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-      - name: Build the Docker image Flight
-        working-directory: src/FlightServices
-        run: docker build . -t jokerva1010123/flight-service:latest
-      - name: Build the Docker image Bonus
-        working-directory: src/BonusServices
-        run: docker build . -t jokerva1010123/bonus-service:latest
+      # - name: Check out the repo
+      #   uses: actions/checkout@v4
+      # - name: Build the Docker image Flight
+      #   working-directory: src/FlightServices
+      #   run: docker build . -t jokerva1010123/flight-service:latest
+      # - name: Build the Docker image Bonus
+      #   working-directory: src/BonusServices
+      #   run: docker build . -t jokerva1010123/bonus-service:latest
       
-      - name: Build the Docker image Ticket
-        working-directory: src/TicketServices
-        run: docker build . -t jokerva1010123/ticket-service:latest
+      # - name: Build the Docker image Ticket
+      #   working-directory: src/TicketServices
+      #   run: docker build . -t jokerva1010123/ticket-service:latest
       
       - name: Build the Docker image Gateway
         working-directory: src/Gateway
@@ -40,9 +40,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push the images to Docker Hub
         run: 
-          docker push jokerva1010123/flight-service:latest &&
-          docker push jokerva1010123/bonus-service:latest &&
-          docker push jokerva1010123/ticket-service:latest &&
+          # docker push jokerva1010123/flight-service:latest &&
+          # docker push jokerva1010123/bonus-service:latest &&
+          # docker push jokerva1010123/ticket-service:latest &&
           docker push jokerva1010123/gateway:latest
       - name: Setup Minikube
         uses: medyagh/setup-minikube@master
@@ -65,7 +65,6 @@ jobs:
           echo "------------------Deploy Services------------------"
           helm delete reserv --namespace jokerva1010123 --ignore-not-found
           helm install -n jokerva1010123 reserv ./services
-          kubectl port-forward bonus 8060:8060
 
       - name: Wait 30s
         uses: jakejarvis/wait-action@master
@@ -87,6 +86,7 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
+          curl http://192.168.49.2:8050/api/v1/airports
           
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
