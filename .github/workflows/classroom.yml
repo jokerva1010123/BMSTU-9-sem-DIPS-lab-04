@@ -73,6 +73,8 @@ jobs:
       - name: Get all resources from namespace jokerva1010123 in Cluster
         run: |
           kubectl get all -n jokerva1010123
+          kubectl port-forward service/bonus 8060:8060
+
       - name: Setup Ingress
         run: |
           cd k8s/networking
@@ -84,7 +86,7 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
-          kubectl port-forward service/bonus 8060:8060
+          
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
       #   id: version
