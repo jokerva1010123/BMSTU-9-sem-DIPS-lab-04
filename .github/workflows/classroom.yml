@@ -18,32 +18,39 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-      # - name: Build the Docker image Flight
-      #   working-directory: src/FlightServices
-      #   run: docker build . -t jokerva1010123/flight-service:latest
-      # - name: Build the Docker image Bonus
-      #   working-directory: src/BonusServices
-      #   run: docker build . -t jokerva1010123/bonus-service:latest
+      - name: Build images
+        timeout-minutes: 10
+        run: docker compose build
+
+      - name: Run containers
+        timeout-minutes: 10
+        run: |
+          docker compose up -d
+          ./scripts/wait-script.sh
+        env:
+          WAIT_PORTS: 8080,8070,8060,8050
+      - name: Build the Docker image Flight
+        run: docker build . -t jokerva1010123/flight-service:latest
+      - name: Build the Docker image Bonus
+        run: docker build . -t jokerva1010123/bonus-service:latest
       
-      # - name: Build the Docker image Ticket
-      #   working-directory: src/TicketServices
-      #   run: docker build . -t jokerva1010123/ticket-service:latest
+      - name: Build the Docker image Ticket
+        run: docker build . -t jokerva1010123/ticket-service:latest
       
-      # - name: Build the Docker image Gateway
-      #   working-directory: src/Gateway
-      #   run: docker build . -t jokerva1010123/gateway:latest
+      - name: Build the Docker image Gateway
+        run: docker build . -t jokerva1010123/gateway:latest
       
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      # - name: Push the images to Docker Hub
-        # run: 
-          # docker push jokerva1010123/flight-service:latest &&
-          # docker push jokerva1010123/bonus-service:latest &&
-          # docker push jokerva1010123/ticket-service:latest &&
-          # docker push jokerva1010123/gateway:latest
+      - name: Push the images to Docker Hub
+        run: 
+          docker push jokerva1010123/flight-service:latest &&
+          docker push jokerva1010123/bonus-service:latest &&
+          docker push jokerva1010123/ticket-service:latest &&
+          docker push jokerva1010123/gateway:latest
       - name: Setup Minikube
         uses: medyagh/setup-minikube@master
   
@@ -94,17 +101,7 @@ jobs:
           sudo ufw allow 8050/tcp
           sudo ufw allow 8070/tcp
           sudo ufw status verbose
-          curl http://192.168.49.2:30070
           
-      # - name: Setup Postman environment (app url)
-      #   uses: sergeysova/jq-action@v2
-      #   id: version
-      #   with:
-      #     cmd: >-
-            
-      #       jq '.values[0].value = "http://${{ secrets.PROD_HOST }}:${{ secrets.PROD_PORT }}"'
-      #       < v1/postman/environment.json > out.tmp &&
-      #       mv out.tmp v1/postman/environment.json
 
       - uses: education/autograding@v1
         id: autograder
