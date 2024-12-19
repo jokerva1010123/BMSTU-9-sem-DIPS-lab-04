@@ -84,6 +84,7 @@ jobs:
           echo "SERVICE_URL=$URL" >> $GITHUB_ENV
           echo "Service URL is: $URL"
           echo "Using service at: ${{ env.SERVICE_URL }}"
+          curl 
       # - name: Setup Postman environment (app url)
       #   uses: sergeysova/jq-action@v2
       #   id: version

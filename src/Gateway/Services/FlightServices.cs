@@ -8,7 +8,7 @@ namespace Gateway.Services
     {
         private readonly HttpClient _httpClient = new()
         {
-            BaseAddress = new Uri("http://flight.jokerva1010123.svc.cluster.local:8070")
+            BaseAddress = new Uri("http://flight:8070/")
             // BaseAddress = new Uri("http://localhost:8070")
             // BaseAddress = new Uri("http://host.docker.internal:8070")
             //BaseAddress = new Uri("http://localhost:5008")
