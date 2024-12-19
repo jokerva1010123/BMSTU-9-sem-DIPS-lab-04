@@ -90,6 +90,9 @@ jobs:
           sudo ufw allow 30060/tcp
           sudo ufw allow 30050/tcp
           sudo ufw allow 30070/tcp
+          sudo ufw allow 8060/tcp
+          sudo ufw allow 8050/tcp
+          sudo ufw allow 8070/tcp
           sudo ufw status verbose
           curl http://192.168.49.2:30070/api/v1/airports
           
