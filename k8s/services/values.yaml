@@ -2,7 +2,7 @@ flight:
   service:
     type: ClusterIP
     port: 8070
-    targetPort: 8070
+    nodePort: 8070
     image: jokerva1010123/flight-service:latest
     env:
       DB_PORT: 5432
@@ -15,7 +15,7 @@ bonus:
   service:
     type: ClusterIP
     port: 8060
-    targetPort: 8060
+    nodePort: 8060
     image: jokerva1010123/bonus-service:latest
     env:
       DB_PORT: 5432
@@ -28,7 +28,7 @@ ticket:
   service:
     type: ClusterIP
     port: 8050
-    targetPort: 8050
+    nodePort: 8050
     image: jokerva1010123/ticket-service:latest
     env:
       DB_PORT: 5432
