@@ -65,6 +65,7 @@ services:
       - "8070:8080"
 
   gateway:
+    image: jokerva1010123/gateway
     build:
       context: .
       dockerfile: ./src/Gateway/Dockerfile
